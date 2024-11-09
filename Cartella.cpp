@@ -6,7 +6,7 @@
 void Cartella::addNote(std::shared_ptr<Note> note) {
     cartella.push_back(note);
 }
-void Cartella::removeNote( std::string noteTitle) {
+void Cartella::removeNote(const std::string &noteTitle) {
     for (  auto &it : cartella) {
         if (it->getTitle() == noteTitle)
             cartella.remove(it);

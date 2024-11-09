@@ -11,13 +11,14 @@ class Cartella {
 private:
     std::string Title;
     std::list<std::shared_ptr<Note>> cartella;
+    bool privacy;
 
 public:
-    explicit Cartella(std::string Title = "Untitled"):Title(std::move(Title)){};
+    explicit Cartella(std::string Title = "Untitled"):Title(std::move(Title)), privacy(false){};
 
     void addNote(std::shared_ptr<Note> note);
 
-    void removeNote( std::string NoteTitle);
+    void removeNote(const std::string &noteTitle);
 
     void removeNotePtr (std::shared_ptr<Note> ptr);
 
@@ -31,6 +32,13 @@ public:
 
     const std::shared_ptr<Note> & findNote (const std::string & noteTitle);
 
+    bool isPrivacy() const {
+        return privacy;
+    }
+
+    void setPrivacy(bool pr) {
+        Cartella::privacy = pr;
+    }
 };
 
 

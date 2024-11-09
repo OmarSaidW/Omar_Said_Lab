@@ -21,3 +21,16 @@ add_executable(Note main.cpp
         Cartella.cpp
         Cartella.h
 )
+add_subdirectory(test)
+
+set(SOURCE_FILES Note.cpp
+        Note.h
+        Date.cpp
+        Date.h
+        Raccoglitore.cpp
+        Raccoglitore.h
+        Cartella.cpp
+        Cartella.h)
+
+add_library(core ${SOURCE_FILES})
+target_link_libraries(Note core)

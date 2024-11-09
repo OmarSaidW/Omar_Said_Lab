@@ -17,9 +17,11 @@ private:
 
 public:
 
-    void createCartella (const std::string &  titl);
+    void createCartella (const std::string &  title);
 
     void removeCartella( const std::string & CartellaTitle);
+
+    void setprivacy(bool pr, const std::string &FolderTitle);
 
     void printCartelle ();
 
@@ -37,11 +39,12 @@ public:
 
     void printNoteText(const std::string &  title) const;
 
-    void modifyText ( const std:: string& newText, const std::string & title) const;
+    void modifyText ( const std:: string& newText, const std::string & noteTitle) const;
 
-    void modifyTitle ( const std:: string& newTItle, const std::string & title);
+    void modifyTitle ( const std:: string& newTitle, const std::string & noteTitle);
 
     void setDeadLine (const std::string & noteTitle, const Date & date);
+
 
     //TODO: Inserire una funziona che permetta di modificare gli attributi di una nota dando un titolo e un l'attributo da modfificare
     //Facolatativo: Cartella Privata da sbloccare con password

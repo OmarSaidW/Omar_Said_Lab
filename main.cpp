@@ -18,12 +18,12 @@ int main() {
     iphoneNotes.modifyText("olio sale e pepe", "Spesa");
 
     iphoneNotes.printNoteText("Spesa");
-    iphoneNotes.removeCartella("Personale");
     iphoneNotes.printCartelle();
 
 
     iphoneNotes.removeNote("Spesa");
     iphoneNotes.printFolderNotesTitle("Personale");
+    iphoneNotes.printNoteText("Spesa");
 
 
 // wxWidgets macro to declare and implement the application
