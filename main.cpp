@@ -6,8 +6,6 @@
 // Fattibile tramite Factory Pattern CREDO; NON SONO SICURO.
 int main() {
 
-    Date Giorno(2012, 2, 28);
-    Giorno.printDate();
     Raccoglitore iphoneNotes;
     iphoneNotes.createNewNote("Spesa", "Burro, sale, pepe, latte");
     iphoneNotes.createNewNote("Esami", "FRO, Calcolatori, Algoritmi e Strutture dati");
@@ -27,8 +25,7 @@ int main() {
 
 
 // wxWidgets macro to declare and implement the application
-    //TODO wxIMPLEMENT_APP(MyApp);
-    // in modo tale da poter visualizzare le cartelle, le noti e le scadenze
+    
 
     return 0;
 }

@@ -5,7 +5,7 @@
 #ifndef NOTE_RACCOGLITORE_H
 #define NOTE_RACCOGLITORE_H
 #include "Note.h"
-#include "Date.h"
+
 #include "Cartella.h"
 #include <list>
 #include <memory>
@@ -29,7 +29,7 @@ public:
 
     void removeNote (const std::string &title);
 
-    std::shared_ptr<Note> findNote (const std::string & noteTitle) const;
+    const std::shared_ptr<Note> & findNote (const std::string & noteTitle) const;
 
     void addNoteToFolder(const std::string &folderTitle, const std::string &noteTitle);
 

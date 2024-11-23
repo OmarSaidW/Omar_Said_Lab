@@ -14,13 +14,9 @@ private:
     bool privacy;
 
 public:
-    explicit Cartella(std::string Title = "Untitled"):Title(std::move(Title)), privacy(false){};
+    explicit Cartella(std::string Title = "Untitled" , bool m = false):Title(std::move(Title)), privacy(m){};
 
     void addNote(std::shared_ptr<Note> note);
-
-    void removeNote(const std::string &noteTitle);
-
-    void removeNotePtr (std::shared_ptr<Note> ptr);
 
     std::list<std::shared_ptr<Note>> & getCartella();
 
@@ -29,8 +25,6 @@ public:
     void setTitle(const std::string &title);
 
     void printNotesTitle();
-
-    const std::shared_ptr<Note> & findNote (const std::string & noteTitle);
 
     bool isPrivacy() const {
         return privacy;

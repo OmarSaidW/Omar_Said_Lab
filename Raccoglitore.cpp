@@ -7,7 +7,10 @@
 //TODO implementare privacy nella ricerca modifica di cartelle
 
 void Raccoglitore::createCartella(const std::string &titl){
-    std::unique_ptr<Cartella> cartella (new Cartella (titl));
+    std::cout << "Do you want to make the folder private?"<< std::endl;
+    bool pr;
+    std::cin >> pr;
+    std::unique_ptr<Cartella> cartella (new Cartella (titl, pr));
     cartelle.push_back(std::move(cartella));
 }
 
@@ -20,7 +23,6 @@ void Raccoglitore::removeCartella(const std::string& cartellaTitle) {
 }
 
 void Raccoglitore::removeNote(const std::string &title){
-
     for(auto iter = notes.begin(); iter!=notes.end(); iter++)
         if((*iter)->getTitle() == title){
             notes.erase(iter);
@@ -34,17 +36,19 @@ void Raccoglitore::removeNote(const std::string &title){
             }
 }
 
- std::shared_ptr<Note> Raccoglitore::findNote(const std::string &noteTitle) const {
-    for( auto  it: notes) { //cerca tra le note generali
+ const std::shared_ptr<Note> & Raccoglitore::findNote(const std::string &noteTitle) const {
+    for( auto & it: notes)//cerca tra le note generali
         if (it->getTitle() == noteTitle)
             return it;
-    }
-    for( const auto & it: cartelle) //cerca tra le note spefiche di ogni cartella
 
-        for ( auto noteIteretor: it->getCartella())
-            if (noteIteretor->getTitle() == noteTitle)
-                return noteIteretor;
-    return nullptr;
+    for( const auto & it: cartelle)//cerca tra le note spefiche di ogni cartella
+        if(!(it->isPrivacy()))//verifica che la cartella non sia privata
+            for ( auto & noteIteretor: it->getCartella())
+                if (noteIteretor->getTitle() == noteTitle)
+                    return noteIteretor;
+
+    static std:: shared_ptr<Note> not_found;
+    return not_found;
 }
 
 void Raccoglitore::printNoteText(const std::string & title) const {
@@ -75,12 +79,11 @@ void Raccoglitore::createNewNote(const std::string &title, const std::string &te
         std::cout<< "Do you want to make " << title << " editable: Y/N"<< std::endl;
         std::string mod;
         std::cin>> mod;
-        bool m;
-        if( mod == "Y" || mod == "y")
+        bool m = false; //FIXME Togliere l'uguale false, mi serve un attimo per i test
+        if( mod == "Y" || mod == "y" || mod=="Yes" || mod == "S" || mod == "Si")
             m  = true;
-        else
-            m = false;
-        notes.push_back(std::make_shared<Note>(Note(title, text, m)));
+
+    notes.push_back(std::make_shared<Note>(Note(title, text,  m))); //FIXME qui rimettere m
 }
 
 void Raccoglitore::addNoteToFolder(const std::string &title, const std::string &noteTitle) {
