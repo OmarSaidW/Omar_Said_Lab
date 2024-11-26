@@ -43,7 +43,7 @@ public:
 
     void modifyTitle ( const std:: string& newTitle, const std::string & noteTitle);
 
-    void setDeadLine (const std::string & noteTitle, const Date & date);
+
 
 
     //TODO: Inserire una funziona che permetta di modificare gli attributi di una nota dando un titolo e un l'attributo da modfificare

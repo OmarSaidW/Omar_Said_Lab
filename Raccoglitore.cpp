@@ -106,13 +106,6 @@ void Raccoglitore::modifyText(const std::string &newText, const std::string & no
     }
 }
 
-void Raccoglitore::setDeadLine(const std::string &noteTitle, const Date &date) {
-    std::shared_ptr<Note> it = findNote( noteTitle);
-    if(it!= nullptr)
-            if(it->getModify())
-                it->setScadenza(date);
-}
-
 void Raccoglitore::modifyTitle(const std::string &newTItle, const std::string &noteTitle) {
     std::shared_ptr<Note> it = findNote(noteTitle);
     if(it!= nullptr) {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include "Raccoglitore.h"
 
 //Fare in modo che la nota sia creabile solo tramite il raccoglitore, non vogliamo note libere a giro
