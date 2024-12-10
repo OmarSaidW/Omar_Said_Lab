@@ -21,11 +21,9 @@ public:
 
     void removeCartella( const std::string & CartellaTitle);
 
-    void setprivacy(bool pr, const std::string &FolderTitle);
-
     void printCartelle ();
 
-    void createNewNote(const std::string &title, const std::string &text);
+    void createNewNote(const std::string &title, const std::string &text, bool modifiable = true);
 
     void removeNote (const std::string &title);
 
@@ -33,11 +31,9 @@ public:
 
     void addNoteToFolder(const std::string &folderTitle, const std::string &noteTitle);
 
-    void printNotesTitles() const;
+    void printFolderNotes(const std::string &folderTitle, std::string &output);
 
-    void printFolderNotesTitle(const std::string &folderTitle);
-
-    void printNoteText(const std::string &  title) const;
+    void printRaccoglitoreNotes(std::string &output);
 
     void modifyText ( const std:: string& newText, const std::string & noteTitle) const;
 
@@ -46,8 +42,6 @@ public:
 
 
 
-    //TODO: Inserire una funziona che permetta di modificare gli attributi di una nota dando un titolo e un l'attributo da modfificare
-    //Facolatativo: Cartella Privata da sbloccare con password
 };
 
 

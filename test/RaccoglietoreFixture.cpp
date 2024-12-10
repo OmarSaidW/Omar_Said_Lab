@@ -8,11 +8,21 @@ class RaccoglitoreSetUp : public ::testing::Test {
 
 protected:
     void SetUp() override{
-        c.createNewNote("Ciao", "Ti saluta con un ciao");
+        c.createNewNote("Ciao", "Ti saluta con un ciao", false);
     }
 
     Raccoglitore c;
 };
+class RaccoglitoreFindNote : public ::testing::Test {
+
+protected:
+    void SetUp() override{
+        c.createNewNote("Ciao", "Ti saluta con un ciao", false);
+    }
+
+    Raccoglitore c;
+};
+
 
 TEST_F(RaccoglitoreSetUp, NoMemoryLeaks) {
     unsigned int initialUseCount = c.findNote("Ciao").use_count();
@@ -20,4 +30,6 @@ TEST_F(RaccoglitoreSetUp, NoMemoryLeaks) {
     c.removeNote("Ciao"); // Libera il puntatore "Ciao"
     EXPECT_EQ(c.findNote("Ciao").use_count(), initialUseCount - 1);
 }
-
+TEST_F(RaccoglitoreFindNote, findNoteTest) {
+    EXPECT_EQ(c.findNote("Pippo"), nullptr);
+}

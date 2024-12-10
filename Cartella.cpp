@@ -15,10 +15,13 @@ void Cartella::setTitle(const std::string &title) {
     Title = title;
 }
 
-void Cartella::printNotesTitle() {
+std::string Cartella::printNotes(std::string Notes) const {
     for(const auto & i: cartella)
-        std::cout << i->getTitle()<< std::endl;
+        Notes += "Titolo: " +  i->getTitle() + "\n" +  "Testo: " + i->getText() + "\n\n";
+    return Notes;
 }
+
+
 
 std::list<std::shared_ptr<Note>> & Cartella::getCartella() {
     return cartella;

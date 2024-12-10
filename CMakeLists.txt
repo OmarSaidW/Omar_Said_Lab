@@ -18,14 +18,7 @@ add_executable(Note main.cpp
         Raccoglitore.h
         Cartella.cpp
         Cartella.h
-        Observer.h
-        Subject.h
-        Model.cpp
-        Model.h
-        Controller.cpp
-        Controller.h
-        View.cpp
-        View.h
+        wx.cpp
 )
 add_subdirectory(test)
 

@@ -3,11 +3,15 @@
 
 //Fare in modo che la nota sia creabile solo tramite il raccoglitore, non vogliamo note libere a giro
 // Fattibile tramite Factory Pattern CREDO; NON SONO SICURO.
-int main() {
+
+
+
+
+/*int main() {
 
     Raccoglitore iphoneNotes;
-    iphoneNotes.createNewNote("Spesa", "Burro, sale, pepe, latte");
-    iphoneNotes.createNewNote("Esami", "FRO, Calcolatori, Algoritmi e Strutture dati");
+    iphoneNotes.createNewNote("Spesa", "Burro, sale, pepe, latte", false);
+    iphoneNotes.createNewNote("Esami", "FRO, Calcolatori, Algoritmi e Strutture dati", false);
     iphoneNotes.createCartella("Personale");
     iphoneNotes.addNoteToFolder("Personale", "Spesa");
     iphoneNotes.printFolderNotesTitle("Personale");
@@ -19,7 +23,7 @@ int main() {
 
 
     iphoneNotes.removeNote("Spesa");
-    iphoneNotes.printFolderNotesTitle("Personale");
+    iphoneNotes.printFolderNotes("Personale");
     iphoneNotes.printNoteText("Spesa");
 
 
@@ -28,3 +32,4 @@ int main() {
 
     return 0;
 }
+*/
