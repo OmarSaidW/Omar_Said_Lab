@@ -144,8 +144,13 @@ void MyFrame:: OnSaveNote(wxCommandEvent& event) {
         return;
     }
     wxString noteTitle = wxGetTextFromUser(wxT("Scrivi qui il titolo della nota"), wxT("TITOLO") );
+    wxString modify = wxGetTextFromUser(wxT("Vuoi che la nota sia modificabile: yes / no"), wxT("Modify") );
     std::string noteTitleString = std::string(noteTitle.mb_str()); //Converte il titolo e il testo in stringa
-    iphone.createNewNote(noteTitleString, text); //chiama il metodo per creare una nuova nota
+    if(modify == "yes")
+        iphone.createNewNote(noteTitleString, text, true); //chiama il metodo per creare una nuova nota
+    else
+        iphone.createNewNote (noteTitleString, text, false);
+
     auto *frame2 = dynamic_cast<MyFrame2 *>(secondFrame); //Cast al secondo frame
     frame2->OnRadioBoxSelected(event);
     inputBox->Clear(); // Pulisce la casella di testo
@@ -190,9 +195,17 @@ void MyFrame::OnModifyNoteText(wxCommandEvent &event) {
     wxString newText = wxGetTextFromUser(wxT("Scrivi qui il nuovo testo della nota"), wxT("New Text"));
     std::string noteTitleString = std::string(noteTitle.mb_str());
     std::string newTextString = std::string(newText.mb_str());
-    iphone.modifyText(newTextString, noteTitleString);
+    std::string result;
+    iphone.modifyText(newTextString, noteTitleString, result );
+    if( result == "Il documento non è modificabile")
+        wxMessageBox(result, "Error", wxOK | wxICON_ERROR);
+    else if (result == "Il documento non è presente")
+        wxMessageBox(result, "Error", wxOK | wxICON_ERROR);
+    else
+        wxMessageBox(result, "Success", wxOK | wxICON_INFORMATION);
     auto *frame2 = dynamic_cast<MyFrame2 *>(secondFrame); //Cast al secondo frame
     frame2->OnRadioBoxSelected(event);
+
 }
 
 void MyFrame::OnRemoveNote(wxCommandEvent &event) {

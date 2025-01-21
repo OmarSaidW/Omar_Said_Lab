@@ -31,7 +31,7 @@ public:
 
     void printRaccoglitoreNotes(std::string &output);
 
-    void modifyText ( const std:: string& newText, const std::string & noteTitle) const;
+    void modifyText(const std::string &newText, const std::string &noteTitle, std::string &result) const;
 
     void modifyTitle ( const std:: string& newTitle, const std::string & noteTitle);
 

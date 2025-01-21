@@ -65,15 +65,17 @@ void Raccoglitore::addNoteToFolder(const std::string &title, const std::string &
         }
 }
 
-void Raccoglitore::modifyText(const std::string &newText, const std::string & noteTitle) const {
+void Raccoglitore::modifyText(const std::string &newText, const std::string &noteTitle, std::string &result) const {
     std::shared_ptr<Note> it = findNote(noteTitle);
     if(it!= nullptr) {
         if ((it->getModify())) { //controllo che la nota sia modificabile
             it->setText(newText);
+            result = "Testo modificato con successo";
         } else {
-            std::cout << "Il documento non è modificabile" << std::endl;
+            result = "Il documento non è modificabile";
         }
-    }
+    }else
+        result = "Il documento non è presente";
 }
 
 void Raccoglitore::modifyTitle(const std::string &newTItle, const std::string &noteTitle) {

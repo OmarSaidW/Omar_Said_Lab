@@ -11,7 +11,6 @@ class Note {
 private:
     std::string  Title;
     std::string Text;
-
     bool Modify;
 
 public:
