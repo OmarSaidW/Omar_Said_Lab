@@ -19,10 +19,6 @@ public:
 
     void createCartella (const std::string &  title);
 
-    void removeCartella( const std::string & CartellaTitle);
-
-    void printCartelle ();
-
     void createNewNote(const std::string &title, const std::string &text, bool modifiable = true);
 
     void removeNote (const std::string &title);
@@ -38,9 +34,6 @@ public:
     void modifyText ( const std:: string& newText, const std::string & noteTitle) const;
 
     void modifyTitle ( const std:: string& newTitle, const std::string & noteTitle);
-
-
-
 
 };
 

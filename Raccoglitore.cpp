@@ -10,14 +10,6 @@ void Raccoglitore::createCartella(const std::string &titl){
     cartelle.push_back(std::move(cartella));
 }
 
-void Raccoglitore::removeCartella(const std::string& cartellaTitle) {
-    for(auto iter = cartelle.begin(); iter!=cartelle.end(); iter++)
-        if((*iter)->getTitle() == cartellaTitle){
-            cartelle.erase(iter);
-            break;
-        }
-}
-
 void Raccoglitore::removeNote(const std::string &title){
     for(auto iter = notes.begin(); iter!=notes.end(); iter++)
         if((*iter)->getTitle() == title){
@@ -94,11 +86,5 @@ void Raccoglitore::modifyTitle(const std::string &newTItle, const std::string &n
         }
     } else
         std::cout<< "Il documento non è presente";
-}
-
-void Raccoglitore::printCartelle() {
-    std::cout << "Dentro sono presenti le seguenti cartelle: " << std::endl;
-    for(const auto & iter: cartelle)
-        std::cout << iter->getTitle()<< std::endl;
 }
 
