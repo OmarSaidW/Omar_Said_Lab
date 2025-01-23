@@ -18,7 +18,6 @@ public:
 
 protected: //Mi permette di separare i metodi dalla loro implementazione
     void OnExit(wxCommandEvent& event);
-    void OnAbout(wxCommandEvent& event);
     void OnNewNote(wxCommandEvent& event);
     void OnPrintNote(wxCommandEvent& event);// Handler for the button click
     void OnNewCartella(wxCommandEvent& event);
@@ -66,13 +65,6 @@ enum{
 MyFrame::MyFrame()
         : wxFrame(nullptr, wxID_ANY, "Action Frame", wxDefaultPosition, wxSize(800, 600)) {
 
-    //Crea un menu file da dove si può interrompere il programma oppure modificare e aggiungere note
-    /*wxMenu *menuFile = new wxMenu;
-    //menuFile->Append(wxID_EXIT, "Exit");
-    menuFile->AppendSeparator();
-    menuFile->Append(ID_Modify_Note_Text, "modify note");
-    menuFile->AppendSeparator();
-    menuFile->Append(ID_Remove_Note, "remove note");*/
 
     OnShowSecondFrame(this);
 
@@ -112,11 +104,6 @@ MyFrame::MyFrame()
 void MyFrame::OnExit(wxCommandEvent& event){
     Close(true);
     secondFrame->Close(true);
-}
-
-void MyFrame::OnAbout(wxCommandEvent& event){
-    wxMessageBox("This is a wxwWidgets note taking app",
-                 "Note app", wxOK | wxICON_INFORMATION);
 }
 
 void MyFrame::OnNewNote(wxCommandEvent& event) { //Crea una nuova nota
@@ -268,4 +255,3 @@ void MyFrame::OnChildClosed(wxCloseEvent& event) {
     event.Skip();
     Close(true);
 }
-
