@@ -59,7 +59,6 @@ enum{
     ID_Print_Note = 3,
     ID_New_Cartella = 4,
     ID_AddNoteToFolder =5,
-    ID_Folder_Notes = 6,
     ID_Modify_Note_Text = 7,
     ID_Remove_Note = 8,
 };
@@ -95,17 +94,7 @@ MyFrame::MyFrame()
     //Bind(wxEVT_TOOL, &MyFrame::OnOpen, this, wxID_OPEN);
     Bind(wxEVT_TOOL, &MyFrame::OnNewCartella, this, ID_New_Cartella);
     Bind(wxEVT_TOOL, &MyFrame::OnSaveNote, this, wxID_SAVE);
-
-
-
-    /*wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(wxID_ABOUT);
-
-    wxMenuBar *menuBar = new wxMenuBar; //Crea la nuova barra in alto
-    menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuHelp, "&Help");
-    SetMenuBar(menuBar);
-    CreateStatusBar();*/
+    Bind(wxEVT_TOOL, &MyFrame::OnRemoveNote, this, ID_Remove_Note);
 
     //Aggiungiamo i bottoni necessari al funzionamento
     wxButton *modifyNote = new wxButton(this, ID_Modify_Note_Text, "Modify a note text", wxPoint(20, 50));
