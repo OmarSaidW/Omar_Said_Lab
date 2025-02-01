@@ -125,8 +125,6 @@ void MyFrame:: OnSaveNote(wxCommandEvent& event) {
         return;
     }
     wxString noteTitle = wxGetTextFromUser(wxT("Scrivi qui il titolo della nota"), wxT("TITOLO") );
-
-    //TODO SOstituire con checkbox
     std::string noteTitleString = std::string(noteTitle.mb_str()); //Converte il titolo e il testo in stringa
     bool value = editBox->GetValue();
     iphone.createNewNote(noteTitleString, text, value);
