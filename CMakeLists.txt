@@ -11,8 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
 
-add_executable(Note main.cpp
-        Note.cpp
+add_executable(Note
         Note.h
         Raccoglitore.cpp
         Raccoglitore.h
@@ -22,7 +21,7 @@ add_executable(Note main.cpp
 )
 add_subdirectory(test)
 
-set(SOURCE_FILES Note.cpp
+set(SOURCE_FILES
         Note.h
         Raccoglitore.cpp
         Raccoglitore.h

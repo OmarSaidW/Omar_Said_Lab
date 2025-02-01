@@ -13,15 +13,15 @@ void Raccoglitore::createCartella(const std::string &titl){
 void Raccoglitore::removeNote(const std::string &title){
     for(auto iter = notes.begin(); iter!=notes.end(); iter++)
         if((*iter)->getTitle() == title){
+            if((*iter)->getModify())
+                modNotes--;
+            else
+                notModNotes--;
             notes.erase(iter);
             break;
         }
     for(  auto & iter: cartelle)
-        for( auto check = (iter->getCartella()).begin(); check!=(iter->getCartella()).end(); check++)
-            if((*check)->getTitle() == title){
-                (iter->getCartella()).erase(check);
-                break;
-            }
+        iter->removeNote(title);
 }
 
  const std::shared_ptr<Note> & Raccoglitore::findNote(const std::string &noteTitle) const {
@@ -29,10 +29,11 @@ void Raccoglitore::removeNote(const std::string &title){
         if (it->getTitle() == noteTitle)
             return it;
 
-    for( const auto & it: cartelle)//cerca tra le note spefiche di ogni cartella
-            for ( auto & noteIteretor: it->getCartella())
-                if (noteIteretor->getTitle() == noteTitle)
-                    return noteIteretor;
+    for( const auto & it: cartelle) {
+        const std::shared_ptr<Note> & note = it->findnote(noteTitle); //usa il find note in cartella
+        if (note != nullptr)
+            return note;
+    }
 
     static std:: shared_ptr<Note> not_found = nullptr;
     return not_found;
@@ -53,6 +54,11 @@ void Raccoglitore::printRaccoglitoreNotes(std::string &output) {
 }
 
 void Raccoglitore::createNewNote(const std::string &title, const std::string &text, bool modifiable) {
+    if(modifiable)
+        modNotes++;
+    else
+        notModNotes++;
+
     notes.push_back(std::make_shared<Note>(Note(title, text,  modifiable)));
 }
 
@@ -88,5 +94,17 @@ void Raccoglitore::modifyTitle(const std::string &newTItle, const std::string &n
         }
     } else
         std::cout<< "Il documento non è presente";
+}
+
+const std::string & Raccoglitore ::printNoteText(const std::string title) {
+    return (findNote(title)->getText());
+}
+
+const std::unique_ptr<Cartella> & Raccoglitore::getCartella(const std::string folderTitle) const {
+    for(const auto & iter: cartelle)
+        if (iter->getTitle() == folderTitle)
+            return iter;
+    static std::unique_ptr<Cartella> not_found = nullptr;
+    return not_found;
 }
 

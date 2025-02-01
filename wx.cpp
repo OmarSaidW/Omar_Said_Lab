@@ -30,6 +30,7 @@ protected: //Mi permette di separare i metodi dalla loro implementazione
     Raccoglitore iphone;
     wxFrame* secondFrame = nullptr; // Punatore al secondo frame
     wxTextCtrl* inputBox;
+    wxCheckBox editbox;
 };
 
 class MyFrame2 : public wxFrame { //Mostro cartelle e note
@@ -121,6 +122,7 @@ void MyFrame:: OnSaveNote(wxCommandEvent& event) {
     }
     wxString noteTitle = wxGetTextFromUser(wxT("Scrivi qui il titolo della nota"), wxT("TITOLO") );
     wxString modify = wxGetTextFromUser(wxT("Vuoi che la nota sia modificabile: yes / no"), wxT("Modify") );
+    //TODO SOstituire con checkbox
     std::string noteTitleString = std::string(noteTitle.mb_str()); //Converte il titolo e il testo in stringa
     if(modify == "yes")
         iphone.createNewNote(noteTitleString, text, true); //chiama il metodo per creare una nuova nota
