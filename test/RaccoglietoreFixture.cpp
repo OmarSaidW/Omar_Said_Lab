@@ -31,16 +31,7 @@ TEST_F(RaccoglitoreSetUp, NoMemoryLeaks) { // Verifica che non ci siano memory l
     EXPECT_EQ(c.findNote("Ciao").use_count(), initialUseCount - 1); //verica eventuali memory leaks durante l'eliminazione di una nota
 }
 
-TEST_F(RaccoglitoreSetUp, NoteCounters){
-    EXPECT_EQ(c.getModNotes(), 1);
-    EXPECT_EQ(c.getNotModNotes(), 2);
-    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 3);
-    c.removeNote("Ciao");
-    EXPECT_EQ(c.getNotModNotes(), 1);
-    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 2);
-    c.removeNote("Amami");
-    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 2);
-}
+
 
 TEST_F(RaccoglitoreSetUp, ModifyNotes){
     std::string nciao = "";
@@ -58,6 +49,17 @@ TEST_F(RaccoglitoreSetUp, ModifyNotes){
 
 TEST_F(RaccoglitoreFindNote, findNoteTest) {  // Verifica che la funzione findNote funzioni correttamente
     EXPECT_EQ(c.findNote("Pippo"), nullptr);
+}
+
+TEST_F(RaccoglitoreSetUp, NoteCounters){
+    EXPECT_EQ(c.getModNotes(), 1);
+    EXPECT_EQ(c.getNotModNotes(), 2);
+    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 3);
+    c.removeNote("Ciao");
+    EXPECT_EQ(c.getNotModNotes(), 1);
+    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 2);
+    c.removeNote("Amami");
+    EXPECT_EQ(c.getNotModNotes() + c.getModNotes(), 2);
 }
 
 

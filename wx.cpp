@@ -16,6 +16,7 @@ public:
     Raccoglitore & getRaccoglitore()   { return iphone; }
     void OnChildClosed(wxCloseEvent& event); //consente di gestire la chiudura del secondo frame
 
+
 protected: //Mi permette di separare i metodi dalla loro implementazione
     void OnExit(wxCommandEvent& event);
     void OnNewNote(wxCommandEvent& event);
@@ -30,7 +31,7 @@ protected: //Mi permette di separare i metodi dalla loro implementazione
     Raccoglitore iphone;
     wxFrame* secondFrame = nullptr; // Punatore al secondo frame
     wxTextCtrl* inputBox;
-    wxCheckBox editbox;
+    wxCheckBox* editBox;
 };
 
 class MyFrame2 : public wxFrame { //Mostro cartelle e note
@@ -68,6 +69,9 @@ MyFrame::MyFrame()
 
 
     OnShowSecondFrame(this);
+    editBox = new wxCheckBox(this,wxID_ANY, "Allow Editing", wxPoint(500, 100));
+    editBox->SetValue(true);
+    editBox->Show(true);
 
     wxToolBar* toolBar = CreateToolBar(wxTB_HORIZONTAL | wxTB_TEXT);
     toolBar->AddTool(ID_New_Note, "New", wxArtProvider::GetBitmap(wxART_NEW), "Create a new document");
@@ -100,6 +104,7 @@ MyFrame::MyFrame()
     Bind(wxEVT_BUTTON, &MyFrame::OnNewNote, this, ID_New_Note);
     Bind(wxEVT_BUTTON, &MyFrame::OnNewCartella, this, ID_New_Cartella);
     Bind(wxEVT_BUTTON, &MyFrame::addNoteToFolder, this, ID_AddNoteToFolder);
+
 }
 
 void MyFrame::OnExit(wxCommandEvent& event){
@@ -114,20 +119,17 @@ void MyFrame::OnNewNote(wxCommandEvent& event) { //Crea una nuova nota
 void MyFrame:: OnSaveNote(wxCommandEvent& event) {
     // Get the text from the input box
     std::string text = inputBox->GetValue().ToStdString();
-
     // Ensure the input is not empty
     if (text.empty()) {
         wxMessageBox("Please enter a note before saving.", "Error", wxOK | wxICON_ERROR);
         return;
     }
     wxString noteTitle = wxGetTextFromUser(wxT("Scrivi qui il titolo della nota"), wxT("TITOLO") );
-    wxString modify = wxGetTextFromUser(wxT("Vuoi che la nota sia modificabile: yes / no"), wxT("Modify") );
+
     //TODO SOstituire con checkbox
     std::string noteTitleString = std::string(noteTitle.mb_str()); //Converte il titolo e il testo in stringa
-    if(modify == "yes")
-        iphone.createNewNote(noteTitleString, text, true); //chiama il metodo per creare una nuova nota
-    else
-        iphone.createNewNote (noteTitleString, text, false);
+    bool value = editBox->GetValue();
+    iphone.createNewNote(noteTitleString, text, value);
 
     auto *frame2 = dynamic_cast<MyFrame2 *>(secondFrame); //Cast al secondo frame
     frame2->OnRadioBoxSelected(event);

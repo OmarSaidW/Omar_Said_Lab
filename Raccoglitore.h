@@ -14,8 +14,8 @@ private:
      //shared pointer cosi da poter essere puntati sia da dentro una crtella che da questa lista
     std::list<std::unique_ptr<Cartella>> cartelle;
     std::list<std::shared_ptr<Note>> notes;
-    unsigned int modNotes;
-    unsigned int notModNotes;
+    unsigned int modNotes =0;
+    unsigned int notModNotes =0;
 
 public:
 
@@ -25,7 +25,7 @@ public:
 
     void removeNote (const std::string &title);
 
-    const std::shared_ptr<Note> & findNote (const std::string & noteTitle) const;//FIXME
+    const std::shared_ptr<Note> & findNote (const std::string & noteTitle) const;
 
     void addNoteToFolder(const std::string &folderTitle, const std::string &noteTitle);
 

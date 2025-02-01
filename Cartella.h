@@ -11,9 +11,8 @@ class Cartella {
 private:
     std::string Title;
     std::list<std::shared_ptr<Note>> cartella;
-    unsigned int modNotes;
-    unsigned int notmodNotes;
-    //TODO: FATTO :) serve il numero di note in una cartella e il contatore di quali note sono o non sono bloccate
+    unsigned int modNotes =0;
+    unsigned int notmodNotes = 0;
 
 public:
     explicit Cartella(std::string Title = "Untitled" ):Title(std::move(Title)){};
